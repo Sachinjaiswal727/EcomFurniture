@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace EcomFurniture.Controllers
 {
-    [Authorize]
-    [Route("api/[controller]")]
+    [ApiController]
+    [Route("api/AdminController")]
     public class AdminController : Controller
     {
         AdminDataAccessLayer obj = new AdminDataAccessLayer();
         [HttpGet]
         [Route("Product/GetAllProduct")]
-        public IEnumerable<Product> Get()
+        public IEnumerable<Product> GetAllProduct()
         {
             return obj.GetAllProduct();
         }

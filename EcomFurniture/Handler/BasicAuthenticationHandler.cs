@@ -16,6 +16,9 @@ namespace EcomFurniture.Handler
     public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {
         private readonly FurEcomContext db;
+
+        
+
         public BasicAuthenticationHandler(
             IOptionsMonitor<AuthenticationSchemeOptions> options,
             ILoggerFactory logger,

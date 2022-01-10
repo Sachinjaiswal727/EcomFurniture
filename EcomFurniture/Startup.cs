@@ -33,10 +33,12 @@ namespace EcomFurniture
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "EcomFurniture", Version = "v1" });
+                //c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
             });
+            
 
-            services.AddAuthentication("BasicAuthenticationHandler")
-                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+            //services.AddAuthentication("BasicAuthenticationHandler")
+            // .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,7 +55,7 @@ namespace EcomFurniture
 
             app.UseRouting();
             app.UseAuthentication();
-            app.UseAuthorization();
+           // app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
