@@ -15,7 +15,7 @@ namespace EcomFurniture.Controllers
         AdminDataAccessLayer obj = new AdminDataAccessLayer();
         [HttpGet]
         [Route("Product/GetAllProduct")]
-        public IEnumerable<Product> Get()
+        public IEnumerable<Product> GetAllProduct()
         {
             return obj.GetAllProduct();
         }

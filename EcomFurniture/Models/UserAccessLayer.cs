@@ -15,7 +15,8 @@ namespace EcomFurniture.Models
         {
             try
             {
-                return db.Products.ToList();
+                var product=  db.Products.ToList();
+                return product;
             }
             catch
             {
