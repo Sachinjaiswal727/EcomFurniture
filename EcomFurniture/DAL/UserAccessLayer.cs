@@ -77,5 +77,29 @@ namespace EcomFurniture.Models
                 throw;
             }
         }
+        //To sort the product by category
+        public IEnumerable<Product> SortbyCategory(int id)
+        {
+            try
+            {
+                 return db.Products.Where(o => o.PCategory == id).ToList();
+            }
+             catch
+            {
+                throw;
+            }
+        }
+        //To sort product by price in Descending
+        public IEnumerable<Product> PriceDescending()
+        {
+            try
+            {
+                return db.Products.OrderByDescending(p=>p.PPrice).ToList();
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }
