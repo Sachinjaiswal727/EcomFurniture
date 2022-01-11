@@ -35,7 +35,8 @@ namespace EcomFurniture
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "EcomFurniture", Version = "v1" });
                 //c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
             });
-            
+            services.AddCors(options=>options.AddDefaultPolicy(
+                builder=>builder.AllowAnyOrigin()));
 
             //services.AddAuthentication("BasicAuthenticationHandler")
             // .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
@@ -52,7 +53,7 @@ namespace EcomFurniture
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors();
             app.UseRouting();
             app.UseAuthentication();
            // app.UseAuthorization();
