@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace EcomFurniture.Controllers
 {
     [ApiController]
-    [Route("api/AdminController")]
+    [Route("[Controller]")]
     public class AdminController : Controller
     {
         AdminDataAccessLayer obj = new AdminDataAccessLayer();

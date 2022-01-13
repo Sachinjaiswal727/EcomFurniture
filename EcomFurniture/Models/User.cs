@@ -7,11 +7,6 @@ namespace EcomFurniture.Models
 {
     public partial class User
     {
-        public User()
-        {
-            Custorders = new HashSet<Custorder>();
-        }
-
         public int UId { get; set; }
         public string UName { get; set; }
         public string ULastname { get; set; }
@@ -21,7 +16,5 @@ namespace EcomFurniture.Models
         public string UAddress { get; set; }
         public int? UPinCode { get; set; }
         public string URole { get; set; }
-
-        public virtual ICollection<Custorder> Custorders { get; set; }
     }
 }

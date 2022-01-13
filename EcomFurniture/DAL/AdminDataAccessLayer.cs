@@ -50,11 +50,7 @@ namespace EcomFurniture.Models
         }
         // To delete a particular product
         public int Deleteproduct(int id)
-        {
-            if (id == null)
-            {
-                return 0;
-            }
+        { 
             try
             {
                 Product product = db.Products.Find(id);
@@ -122,10 +118,6 @@ namespace EcomFurniture.Models
         //To delete particular user 
         public int DeleteUser(int id)
         {
-            if (id == null)
-            {
-                return 0;
-            }
             try
             {
                 User user = db.Users.Find(id);
@@ -141,10 +133,6 @@ namespace EcomFurniture.Models
         //To delete particular order 
         public int DeleteOrder(int id)
         {
-            if (id == null)
-            {
-                return 0;
-            }
             try
             {
                 Custorder order = db.Custorders.Find(id);

@@ -101,5 +101,17 @@ namespace EcomFurniture.Models
                 throw;
             }
         }
+        //To sort product by price Ascending
+        public IEnumerable<Product> PriceAscending()
+        {
+            try
+            {
+                return db.Products.OrderBy(p => p.PPrice).ToList();
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

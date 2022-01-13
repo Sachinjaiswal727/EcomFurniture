@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace EcomFurniture.Controllers
 {
     [ApiController]
-    [Route("api/UserController")]
+    [Route("[Controller]")]
     public class UserController : Controller
     {
         UserAccessLayer obj = new UserAccessLayer();
@@ -54,6 +54,12 @@ namespace EcomFurniture.Controllers
         public IEnumerable<Product> PriceDecending()
         {
             return obj.PriceDescending();
+        }
+        [HttpGet]
+        [Route("Product/SortByPriceAscending")]
+        public IEnumerable<Product> PriceAscending()
+        {
+            return obj.PriceAscending();
         }
     }
 }
