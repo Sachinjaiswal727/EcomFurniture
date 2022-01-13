@@ -1,4 +1,3 @@
-using EcomFurniture.Handler;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,8 +34,7 @@ namespace EcomFurniture
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "EcomFurniture", Version = "v1" });
                 //c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
             });
-            services.AddCors(options=>options.AddDefaultPolicy(
-                builder=>builder.AllowAnyOrigin()));
+            
 
             //services.AddAuthentication("BasicAuthenticationHandler")
             // .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
@@ -53,9 +51,9 @@ namespace EcomFurniture
             }
 
             app.UseHttpsRedirection();
-            app.UseCors();
+           
             app.UseRouting();
-            app.UseAuthentication();
+            //app.UseAuthentication();
            // app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace EcomFurniture.Controllers
 {
     [ApiController]
-    [Route("api/HomeController")]
+    [Route("[Controller]")]
     public class HomeController : Controller
     {
         HomeBLL obj = new HomeBLL();

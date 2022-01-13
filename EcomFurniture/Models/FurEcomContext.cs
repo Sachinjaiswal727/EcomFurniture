@@ -27,7 +27,7 @@ namespace EcomFurniture.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=DESKTOP-3EJ1KVH\\SQLEXPRESS;Database=FurEcom;Trusted_Connection=True;");
             }
         }
@@ -81,7 +81,7 @@ namespace EcomFurniture.Models
             modelBuilder.Entity<Custorder>(entity =>
             {
                 entity.HasKey(e => e.OId)
-                    .HasName("PK__custorde__904BC20E7CF6F1D1");
+                    .HasName("PK__custorde__904BC20E431E739E");
 
                 entity.ToTable("custorder");
 
@@ -110,24 +110,12 @@ namespace EcomFurniture.Models
                     .HasColumnName("p_name");
 
                 entity.Property(e => e.UId).HasColumnName("u_id");
-
-                entity.HasOne(d => d.PIdNavigation)
-                    .WithMany(p => p.Custorders)
-                    .HasForeignKey(d => d.PId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__custorder__p_id__3E52440B");
-
-                entity.HasOne(d => d.UIdNavigation)
-                    .WithMany(p => p.Custorders)
-                    .HasForeignKey(d => d.UId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__custorder__u_id__3D5E1FD2");
             });
 
             modelBuilder.Entity<Product>(entity =>
             {
                 entity.HasKey(e => e.PId)
-                    .HasName("PK__Product__82E06B912411E4BC");
+                    .HasName("PK__Product__82E06B910407069D");
 
                 entity.ToTable("Product");
 
@@ -154,12 +142,6 @@ namespace EcomFurniture.Models
                 entity.Property(e => e.PPrice)
                     .HasColumnType("decimal(10, 2)")
                     .HasColumnName("p_price");
-
-                entity.HasOne(d => d.PCategoryNavigation)
-                    .WithMany(p => p.Products)
-                    .HasForeignKey(d => d.PCategory)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Product__p_categ__38996AB5");
             });
 
             modelBuilder.Entity<User>(entity =>
@@ -168,6 +150,9 @@ namespace EcomFurniture.Models
                     .HasName("PK__users__B51D3DEA996F6701");
 
                 entity.ToTable("users");
+
+                entity.HasIndex(e => e.UEmail, "UQ__users__3DF9EF22F2A29D9C")
+                    .IsUnique();
 
                 entity.Property(e => e.UId).HasColumnName("u_id");
 
