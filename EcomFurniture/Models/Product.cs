@@ -13,5 +13,8 @@ namespace EcomFurniture.Models
         public decimal PPrice { get; set; }
         public decimal? PDiscount { get; set; }
         public string PDescription { get; set; }
+        public string ImgUrl { get; set; }
+
+        public virtual Category PCategoryNavigation { get; set; }
     }
 }

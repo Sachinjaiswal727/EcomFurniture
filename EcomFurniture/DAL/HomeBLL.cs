@@ -22,7 +22,7 @@ namespace EcomFurniture.Models
                 else
                 {
 
-                    if (user.URole == "admin")
+                    if (user.URole == 1)
                     {
                         //User is admin 
                         return true;

@@ -21,6 +21,7 @@ namespace EcomFurniture.Models
         public virtual DbSet<Contactu> Contactus { get; set; }
         public virtual DbSet<Custorder> Custorders { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -115,11 +116,16 @@ namespace EcomFurniture.Models
             modelBuilder.Entity<Product>(entity =>
             {
                 entity.HasKey(e => e.PId)
-                    .HasName("PK__Product__82E06B910407069D");
+                    .HasName("PK__Product__82E06B917E0A67D3");
 
                 entity.ToTable("Product");
 
                 entity.Property(e => e.PId).HasColumnName("p_id");
+
+                entity.Property(e => e.ImgUrl)
+                    .HasMaxLength(1000)
+                    .IsUnicode(false)
+                    .HasColumnName("img_url");
 
                 entity.Property(e => e.PCategory).HasColumnName("p_category");
 
@@ -142,16 +148,39 @@ namespace EcomFurniture.Models
                 entity.Property(e => e.PPrice)
                     .HasColumnType("decimal(10, 2)")
                     .HasColumnName("p_price");
+
+                entity.HasOne(d => d.PCategoryNavigation)
+                    .WithMany(p => p.Products)
+                    .HasForeignKey(d => d.PCategory)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Product__p_categ__70DDC3D8");
+            });
+
+            modelBuilder.Entity<Role>(entity =>
+            {
+                entity.HasKey(e => e.RId)
+                    .HasName("PK__roles__C4762327B310BB47");
+
+                entity.ToTable("roles");
+
+                entity.Property(e => e.RId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("r_id");
+
+                entity.Property(e => e.Role1)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("role");
             });
 
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasKey(e => e.UId)
-                    .HasName("PK__users__B51D3DEA996F6701");
+                    .HasName("PK__users__B51D3DEA84324135");
 
                 entity.ToTable("users");
 
-                entity.HasIndex(e => e.UEmail, "UQ__users__3DF9EF22F2A29D9C")
+                entity.HasIndex(e => e.UEmail, "UQ__users__3DF9EF222572186D")
                     .IsUnique();
 
                 entity.Property(e => e.UId).HasColumnName("u_id");
@@ -162,7 +191,6 @@ namespace EcomFurniture.Models
                     .HasColumnName("u_address");
 
                 entity.Property(e => e.UEmail)
-                    .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("u_email");
@@ -191,10 +219,12 @@ namespace EcomFurniture.Models
 
                 entity.Property(e => e.UPinCode).HasColumnName("u_PinCode");
 
-                entity.Property(e => e.URole)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("u_role");
+                entity.Property(e => e.URole).HasColumnName("u_role");
+
+                entity.HasOne(d => d.URoleNavigation)
+                    .WithMany(p => p.Users)
+                    .HasForeignKey(d => d.URole)
+                    .HasConstraintName("FK__users__u_role__7F2BE32F");
             });
 
             OnModelCreatingPartial(modelBuilder);

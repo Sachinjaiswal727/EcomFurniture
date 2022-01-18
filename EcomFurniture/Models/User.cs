@@ -15,6 +15,8 @@ namespace EcomFurniture.Models
         public string UMobile { get; set; }
         public string UAddress { get; set; }
         public int? UPinCode { get; set; }
-        public string URole { get; set; }
+        public int? URole { get; set; }
+
+        public virtual Role URoleNavigation { get; set; }
     }
 }
